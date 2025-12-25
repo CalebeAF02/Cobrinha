@@ -1,4 +1,8 @@
-package Jogo;
+package motor;
+
+import jogo.CenaJogo;
+import jogo.CenaMenu;
+import jogo.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +23,7 @@ public class Window extends JFrame implements Runnable {
 
     //Controle de cenas!
     public int estadoCorrente;
-    public Cena cenaCorrente;
+    public ICena ICenaCorrente;
     //Instacia o Teclado!
     public Teclado teclado = new Teclado();
     // Instancia o Mouse!
@@ -60,14 +64,14 @@ public class Window extends JFrame implements Runnable {
         estadoCorrente = newEstado;
         switch (estadoCorrente) {
             case 0:
-                cenaCorrente = new CenaMenu(teclado, mouse);
+                ICenaCorrente = new CenaMenu(teclado, mouse);
                 break;
             case 1:
-                cenaCorrente = new CenaJogo();
+                ICenaCorrente = new CenaJogo(teclado);
                 break;
             default:
                 System.out.println("Cena nao encontrada!");
-                cenaCorrente = null;
+                ICenaCorrente = null;
                 break;
         }
 
@@ -83,7 +87,7 @@ public class Window extends JFrame implements Runnable {
         //Desenha a tela na janela!
         getGraphics().drawImage(dbImage, 0, 0, this);
 
-        cenaCorrente.atualiza(dt);
+        ICenaCorrente.atualiza(dt);
     }
 
     public void desenha(Graphics g) {
@@ -94,7 +98,7 @@ public class Window extends JFrame implements Runnable {
         // Desenha um retangulo Preto!
         //g2.fillRect(0, 0, getWidth(), getWidth());
 
-        cenaCorrente.desenha(g);
+        ICenaCorrente.desenha(g);
     }
 
     // Sobrescreve o metodo run da interface Runnable!

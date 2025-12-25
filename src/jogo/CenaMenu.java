@@ -1,4 +1,9 @@
-package Jogo;
+package jogo;
+
+import motor.ICena;
+import motor.Mouse;
+import motor.Teclado;
+import motor.Window;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -6,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class CenaMenu extends Cena {
+public class CenaMenu extends ICena {
 
     public Teclado teclado;
     public Mouse mouse;
@@ -49,13 +54,10 @@ public class CenaMenu extends Cena {
 
     @Override
     public void atualiza(double dt) {
-        if (teclado.isKeyPressed(KeyEvent.VK_UP)) {
-            System.out.println("VK_UP -> Foi Pressionado!");
-        }
         if (retanguloPlay.isDentro((int)mouse.getX(), (int)mouse.getY())) {
             playCorrente = playPressionado;
             if(mouse.isPressed()){
-                Window.getWindow().mudarEstado(1);
+                motor.Window.getWindow().mudarEstado(1);
             }
         }else{
             playCorrente = play;
@@ -75,9 +77,9 @@ public class CenaMenu extends Cena {
         g.drawImage(fundo, 0, 0, 800, 600, null);
         //g.fillRect(0,0,Constantes.LARGURA_JANELA, Constantes.ALTURA_JANELA);
 
-        g.drawImage(titulo, retanguloTitulo.x, retanguloTitulo.y, retanguloTitulo.largura, retanguloTitulo.altura, null);
-        g.drawImage(playCorrente, retanguloPlay.x, retanguloPlay.y, retanguloPlay.largura, retanguloPlay.altura, null);
-        g.drawImage(exitCorrente, retanguloExit.x, retanguloExit.y, retanguloExit.largura, retanguloExit.altura, null);
+        g.drawImage(titulo, (int)retanguloTitulo.x, (int)retanguloTitulo.y, (int)retanguloTitulo.largura, (int)retanguloTitulo.altura, null);
+        g.drawImage(playCorrente, (int)retanguloPlay.x, (int)retanguloPlay.y, (int)retanguloPlay.largura, (int)retanguloPlay.altura, null);
+        g.drawImage(exitCorrente, (int)retanguloExit.x, (int)retanguloExit.y, (int)retanguloExit.largura, (int)retanguloExit.altura, null);
 
     }
 }

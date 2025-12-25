@@ -1,12 +1,12 @@
-package Jogo;
+package jogo;
 
 public class Retangulo {
-    public int x;
-    public int y;
-    public int largura;
-    public int altura;
+    public double x;
+    public double y;
+    public double largura;
+    public double altura;
 
-    public Retangulo(int x, int y, int width, int height) {
+    public Retangulo(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
         this.largura = width;

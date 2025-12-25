@@ -1,5 +1,4 @@
-import Jogo.Constantes;
-import Jogo.Window;
+import motor.Window;
 
 public class Main {
     public static void main(String[] args) {
