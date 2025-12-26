@@ -29,4 +29,8 @@ public class Retangulo {
         g2.setColor(cor);
         g2.fill(new Rectangle2D.Double(x, y, largura, altura));
     }
+
+    public static boolean colisao(Retangulo r1, Retangulo r2) {
+        return (r1.x >= r2.x && r1.x + r1.largura <= r2.x + r2.largura && r1.y >= r2.y && r1.y + r1.altura <= r2.y + r2.altura);
+    }
 }
