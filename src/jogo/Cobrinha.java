@@ -86,7 +86,15 @@ public class Cobrinha {
     }
 
     public void setDiracao(Direcao newDirecao){
-        direcao = newDirecao;
+        if (newDirecao == Direcao.DIREITA && direcao != Direcao.ESQUERDA) {
+            direcao = newDirecao;
+        }else if (newDirecao == Direcao.ESQUERDA && direcao != Direcao.DIREITA) {
+            direcao = newDirecao;
+        }else if (newDirecao == Direcao.ACIMA && direcao != Direcao.ABAIXO) {
+            direcao = newDirecao;
+        }else if (newDirecao == Direcao.ABAIXO && direcao != Direcao.ACIMA) {
+            direcao = newDirecao;
+        }
     }
 
 

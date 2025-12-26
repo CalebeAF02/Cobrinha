@@ -5,6 +5,8 @@ import motor.ICena;
 import motor.entradas.Mouse;
 import motor.entradas.Teclado;
 import motor.Window;
+import motor.utils.Botao;
+import motor.utils.Imagem;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -18,9 +20,10 @@ public class CenaMenu extends ICena {
 
     //Cria varias variaveis de imagens
     public BufferedImage fundo;
-    public BufferedImage titulo, playPressionado, play, exitPressionado, exit, playCorrente, exitCorrente;
+    public BufferedImage titulo;
 
-    private Retangulo retanguloTitulo, retanguloPlay, retanguloExit;
+    public Botao botaoPlay, botaoExit;
+    private Retangulo retanguloTitulo;
 
 
     public CenaMenu(Teclado teclado, Mouse mouse) {
@@ -28,47 +31,29 @@ public class CenaMenu extends ICena {
         this.mouse = mouse;
 
         //Verifiqca Se imagem foi encontrada e não está corrompida
-        try {
-            fundo = ImageIO.read(new File("assets/fundo_menu.png"));
-            BufferedImage sprites = ImageIO.read(new File("assets/menuSprite.png"));
+        fundo = Imagem.lerImagem("assets/fundo_menu.png");
 
-            //Recorta pedaços da imagem dentro de sprites!
-            titulo = sprites.getSubimage(0, 242, 960, 240);
-            playPressionado = sprites.getSubimage(0, 121, 261, 121);
-            play = sprites.getSubimage(265, 121, 261, 121);
-            exitPressionado = sprites.getSubimage(0, 0, 253, 93);
-            exit = sprites.getSubimage(265, 0, 253, 93);
 
-        } catch (Exception erro) {
-            erro.printStackTrace();
-        }
 
-        playCorrente = play;
-        exitCorrente = exit;
+
+        BufferedImage sprites = Imagem.lerImagem("assets/menuSprite.png");
+        //Recorta pedaços da imagem dentro de sprites!
+        titulo = sprites.getSubimage(0, 242, 960, 240);
+
+        botaoPlay = new Botao(sprites.getSubimage(265, 121, 261, 121), sprites.getSubimage(0, 121, 261, 121), new Retangulo(200, 400, 100, 100));
+        botaoExit = new Botao(sprites.getSubimage(265, 0, 253, 93), sprites.getSubimage(0, 0, 253, 93), new Retangulo(500, 400, 100, 80));
 
         retanguloTitulo = new Retangulo(100, 100, 600, 250);
-        retanguloPlay = new Retangulo(200, 400, 100, 100);
-        retanguloExit = new Retangulo(500, 400, 100, 80);
 
     }
 
     @Override
     public void atualiza(double dt) {
-        if (retanguloPlay.isDentro((int)mouse.getX(), (int)mouse.getY())) {
-            playCorrente = playPressionado;
-            if(mouse.isPressed()){
-                motor.Window.getWindow().mudarEstado(1);
-            }
-        }else{
-            playCorrente = play;
+        if(botaoPlay.acao(mouse)){
+            motor.Window.getWindow().mudarEstado(1);
         }
-        if (retanguloExit.isDentro((int)mouse.getX(), (int)mouse.getY())) {
-            exitCorrente = exitPressionado;
-            if(mouse.isPressed()){
-                Window.getWindow().close();
-            }
-        }else{
-            exitCorrente = exit;
+        if(botaoExit.acao(mouse)){
+            Window.getWindow().close();
         }
     }
 
@@ -77,9 +62,8 @@ public class CenaMenu extends ICena {
         g.drawImage(fundo, 0, 0, 800, 600, null);
         //g.fillRect(0,0,Constantes.LARGURA_JANELA, Constantes.ALTURA_JANELA);
 
+        botaoPlay.desenha(g);
+        botaoExit.desenha(g);
         g.drawImage(titulo, (int)retanguloTitulo.x, (int)retanguloTitulo.y, (int)retanguloTitulo.largura, (int)retanguloTitulo.altura, null);
-        g.drawImage(playCorrente, (int)retanguloPlay.x, (int)retanguloPlay.y, (int)retanguloPlay.largura, (int)retanguloPlay.altura, null);
-        g.drawImage(exitCorrente, (int)retanguloExit.x, (int)retanguloExit.y, (int)retanguloExit.largura, (int)retanguloExit.altura, null);
-
     }
 }
