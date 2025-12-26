@@ -19,14 +19,21 @@ public class Botao {
 
     }
 
-    public boolean acao(Mouse mouse){
+    public boolean isEncima(Mouse mouse){
         if (retangulo.isDentro((int)mouse.getX(), (int)mouse.getY())) {
             corrente = pressionado;
+            return true;
+        }else{
+            corrente = normal;
+        }
+        return false;
+    }
+
+    public boolean isClicado(Mouse mouse){
+        if (retangulo.isDentro((int)mouse.getX(), (int)mouse.getY())) {
             if(mouse.isPressed()){
                 return true;
             }
-        }else{
-            corrente = normal;
         }
         return false;
     }

@@ -1,17 +1,20 @@
 package motor.utils;
 
-import javax.imageio.ImageIO;
+import jogo.utils.Retangulo;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Imagem {
+    public BufferedImage imagem;
+    private Retangulo retangulo;
 
-    public static BufferedImage lerImagem(String localArquivo){
-        try {
-            return  ImageIO.read(new File(localArquivo));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Imagem(BufferedImage imagem, Retangulo retangulo) {
+        this.imagem = imagem;
+        this.retangulo = retangulo;
+    }
+
+    public void desenha(Graphics g) {
+        g.drawImage(imagem, (int)retangulo.x, (int)retangulo.y, (int)retangulo.largura, (int)retangulo.altura, null);
     }
 }

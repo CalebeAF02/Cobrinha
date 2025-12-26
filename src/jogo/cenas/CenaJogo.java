@@ -13,8 +13,8 @@ import java.awt.geom.Rectangle2D;
 
 public class CenaJogo extends ICena {
 
-    Retangulo imgFundo, imgFrente;
-    Cobrinha cobrinha;
+    private Retangulo imgFundo, imgFrente;
+    private Cobrinha cobrinha;
 
     public Teclado teclado;
 
@@ -45,11 +45,9 @@ public class CenaJogo extends ICena {
     @Override
     public void desenha(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLACK);
-        g2.fill(new Rectangle2D.Double(imgFundo.x, imgFundo.y, imgFundo.largura, imgFundo.altura));
 
-        g2.setColor(Color.WHITE);
-        g2.fill(new Rectangle2D.Double(imgFrente.x, imgFrente.y, imgFrente.largura, imgFrente.altura));
+        imgFundo.pintar(g2,Color.BLACK);
+        imgFrente.pintar(g2, Color.WHITE);
 
         cobrinha.desenha(g2);
 

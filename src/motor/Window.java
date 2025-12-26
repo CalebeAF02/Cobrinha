@@ -5,7 +5,7 @@ import jogo.cenas.CenaMenu;
 import jogo.utils.Constantes;
 import motor.entradas.Mouse;
 import motor.entradas.Teclado;
-import motor.utils.Time;
+import motor.utils.Tempo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -113,7 +113,7 @@ public class Window extends JFrame implements Runnable {
         try {
             while (executando) {
                 // time = tempo atual!
-                double time = Time.getTime();
+                double time = Tempo.getTempo();
                 // deltaTime = a quantidade de tempo dentre dois quadros!
                 double deltaTime = time - lastframeTime;
                 // lastframeTime = tempo atual!

@@ -1,5 +1,8 @@
 package jogo.utils;
 
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+
 public class Retangulo {
     public double x;
     public double y;
@@ -20,5 +23,10 @@ public class Retangulo {
         }else{
             return false;
         }
+    }
+
+    public void pintar(Graphics2D g2, Color cor){
+        g2.setColor(cor);
+        g2.fill(new Rectangle2D.Double(x, y, largura, altura));
     }
 }
