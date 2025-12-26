@@ -1,29 +1,28 @@
 package jogo.cenas;
 
 import jogo.*;
-import jogo.utils.Constantes;
-import jogo.utils.Direcao;
-import jogo.utils.Retangulo;
-import jogo.utils.TecladoControle;
+import jogo.utils.*;
 import motor.ICena;
 import motor.entradas.Teclado;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class CenaJogo extends ICena {
 
+    private Teclado teclado;
     private Retangulo imgFundo, imgFrente;
-    private Cobrinha cobrinha;
 
-    public Teclado teclado;
+    private Cobrinha cobrinha;
+    private Comida comida;
 
     public CenaJogo(Teclado teclado) {
         this.teclado = teclado;
 
         imgFundo = new Retangulo(0, 0, Constantes.LARGURA_JANELA, Constantes.ALTURA_JANELA);
-        imgFrente = new Retangulo(24,48,24*31,24*22);
-        cobrinha = new Cobrinha(10,48,48+24,24,24);
+        imgFrente = new Retangulo(24,48,Constantes.QUADRADINHO*31,Constantes.QUADRADINHO*22);
+        cobrinha = new Cobrinha(2,48,48+24,24,24, imgFrente);
+        comida = new Comida(imgFrente,cobrinha,12,12,Color.GREEN);
+        comida.spawn();
     }
     @Override
     public void atualiza(double dt) {
@@ -39,6 +38,12 @@ public class CenaJogo extends ICena {
         if (teclado.isKeyPressed(TecladoControle.SETA_DIREITA)) {
             cobrinha.setDiracao(Direcao.DIREITA);
         }
+
+        if((!comida.isSpawned)){
+            comida.spawn();
+        }
+
+        comida.atualiza(dt);
         cobrinha.atualiza(dt);
     }
 
@@ -50,6 +55,6 @@ public class CenaJogo extends ICena {
         imgFrente.pintar(g2, Color.WHITE);
 
         cobrinha.desenha(g2);
-
+        comida.desenha(g2);
     }
 }

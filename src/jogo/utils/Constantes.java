@@ -5,4 +5,5 @@ public class Constantes {
     public static final int ALTURA_JANELA = 600;
     public static final String TITULO_JANELA = "Cobrinha";
 
+    public static final float QUADRADINHO = 24;
 }

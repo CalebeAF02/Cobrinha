@@ -18,13 +18,16 @@ public class Cobrinha {
 
     public Direcao direcao = Direcao.DIREITA;
 
-    public final double TEMPO_DE_ESPERA = 0.2f;
+    public final double TEMPO_DE_ESPERA = 0.15f;
     public double tempoAguardando = TEMPO_DE_ESPERA;
 
-    public Cobrinha(int tamanho, double startX, double startY, double larguraCorpo, double alturaCorpo) {
+    public Retangulo fundo;
+
+    public Cobrinha(int tamanho, double startX, double startY, double larguraCorpo, double alturaCorpo, Retangulo fundo) {
         this.tamanho = tamanho;
         this.larguraCorpo = larguraCorpo;
         this.alturaCorpo = alturaCorpo;
+        this.fundo = fundo;
 
         for (int i = 0; i <= tamanho; i++) {
             Retangulo parteDoCorpo = new Retangulo(startX + i * larguraCorpo, startY, larguraCorpo, alturaCorpo);
@@ -103,11 +106,43 @@ public class Cobrinha {
 
     public boolean autoColisao() {
         Retangulo cabecaR = corpo[this.cabeca];
-        for (int i = calda; i != (cabeca - 1); i = (i + 1) % corpo.length) {
-            if (Retangulo.colisao(cabecaR, corpo[i])) {
+        return colisaoComRetangulo(cabecaR) || colideComLimiteDaTela(cabecaR);
+    }
+
+    public boolean colisaoComRetangulo(Retangulo retangulo) {
+        for (int i = calda; i != cabeca; i = (i + 1) % corpo.length) {
+            if (Retangulo.colisao(retangulo, corpo[i])) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean colideComLimiteDaTela(Retangulo cabeca){
+        return (cabeca.x < fundo.x || (cabeca.x + cabeca.largura) > fundo.x + fundo.largura || cabeca.y < fundo.y || (cabeca.y + cabeca.altura) > fundo.y + fundo.altura);
+    }
+
+    public void cresce(){
+        double posX = 0;
+        double posY = 0;
+
+        if (direcao == Direcao.DIREITA) {
+            posX = corpo[calda].x - larguraCorpo;
+            posY = corpo[calda].y;
+        } else if (direcao == Direcao.ESQUERDA) {
+            posX = corpo[calda].x + larguraCorpo;
+            posY = corpo[calda].y;
+        } else if (direcao == Direcao.ACIMA) {
+            posX = corpo[calda].x;
+            posY = corpo[calda].y + alturaCorpo;
+        } else if (direcao == Direcao.ABAIXO) {
+            posX = corpo[calda].x;
+            posY = corpo[calda].y - alturaCorpo;
+        }
+
+        Retangulo novaCalda = new Retangulo(posX, posY, larguraCorpo, alturaCorpo);
+
+        calda = (calda-1) % corpo.length;
+        corpo[calda] = novaCalda;
     }
 }
