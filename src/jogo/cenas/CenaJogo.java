@@ -1,10 +1,14 @@
-package jogo;
+package jogo.cenas;
 
+import jogo.*;
+import jogo.utils.Constantes;
+import jogo.utils.Direcao;
+import jogo.utils.Retangulo;
+import jogo.utils.TecladoControle;
 import motor.ICena;
-import motor.Teclado;
+import motor.entradas.Teclado;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 
 public class CenaJogo extends ICena {
@@ -23,20 +27,16 @@ public class CenaJogo extends ICena {
     }
     @Override
     public void atualiza(double dt) {
-        if (teclado.isKeyPressed(KeyEvent.VK_UP)) {
-            System.out.println("VK_UP -> Foi Pressionado!");
+        if (teclado.isKeyPressed(TecladoControle.SETA_SUBIR)) {
             cobrinha.setDiracao(Direcao.ACIMA);
         }
-        if (teclado.isKeyPressed(KeyEvent.VK_DOWN)) {
-            System.out.println("VK_UP -> Foi Pressionado!");
+        if (teclado.isKeyPressed(TecladoControle.SETA_DECER)) {
             cobrinha.setDiracao(Direcao.ABAIXO);
         }
-        if (teclado.isKeyPressed(KeyEvent.VK_LEFT)) {
-            System.out.println("VK_UP -> Foi Pressionado!");
+        if (teclado.isKeyPressed(TecladoControle.SETA_ESQUERDA)) {
             cobrinha.setDiracao(Direcao.ESQUERDA);
         }
-        if (teclado.isKeyPressed(KeyEvent.VK_RIGHT)) {
-            System.out.println("VK_UP -> Foi Pressionado!");
+        if (teclado.isKeyPressed(TecladoControle.SETA_DIREITA)) {
             cobrinha.setDiracao(Direcao.DIREITA);
         }
         cobrinha.atualiza(dt);

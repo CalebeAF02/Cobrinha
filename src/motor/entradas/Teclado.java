@@ -1,4 +1,4 @@
-package motor;
+package motor.entradas;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

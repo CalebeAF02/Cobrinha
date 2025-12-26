@@ -1,13 +1,13 @@
-package jogo;
+package jogo.cenas;
 
+import jogo.utils.Retangulo;
 import motor.ICena;
-import motor.Mouse;
-import motor.Teclado;
+import motor.entradas.Mouse;
+import motor.entradas.Teclado;
 import motor.Window;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 

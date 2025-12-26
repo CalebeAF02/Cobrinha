@@ -1,4 +1,4 @@
-package jogo;
+package jogo.utils;
 
 public enum Direcao {
     DIREITA,

@@ -1,4 +1,4 @@
-package motor;
+package motor.entradas;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

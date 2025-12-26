@@ -1,4 +1,4 @@
-package motor;
+package motor.utils;
 
 public class Time {
     // variavel para pegar o tempo em segundos!

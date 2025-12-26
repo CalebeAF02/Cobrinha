@@ -1,4 +1,4 @@
-package jogo;
+package jogo.utils;
 
 public class Retangulo {
     public double x;

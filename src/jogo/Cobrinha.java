@@ -1,5 +1,8 @@
 package jogo;
 
+import jogo.utils.Direcao;
+import jogo.utils.Retangulo;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 

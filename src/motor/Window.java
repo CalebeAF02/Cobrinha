@@ -1,8 +1,11 @@
 package motor;
 
-import jogo.CenaJogo;
-import jogo.CenaMenu;
-import jogo.Constantes;
+import jogo.cenas.CenaJogo;
+import jogo.cenas.CenaMenu;
+import jogo.utils.Constantes;
+import motor.entradas.Mouse;
+import motor.entradas.Teclado;
+import motor.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;

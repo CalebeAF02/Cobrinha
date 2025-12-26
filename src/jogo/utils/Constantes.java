@@ -1,4 +1,4 @@
-package jogo;
+package jogo.utils;
 
 public class Constantes {
     public static final int LARGURA_JANELA = 800;
