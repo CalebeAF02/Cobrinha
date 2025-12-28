@@ -6,7 +6,7 @@ import jogo.utils.TecladoControle;
 import motor.ICena;
 import motor.entradas.Mouse;
 import motor.entradas.Teclado;
-import motor.Window;
+import motor.fonte.Fonte;
 import motor.utils.Botao;
 import motor.utils.CarregadorDeImagem;
 import motor.utils.Imagem;
@@ -24,9 +24,14 @@ public class CenaMenu extends ICena {
     private Imagem titulo;
     private Imagem fundo;
 
+    private Fonte fonteTitulo;
+    private Fonte fonteNormal;
+
     public CenaMenu(Teclado teclado, Mouse mouse) {
         this.teclado = teclado;
         this.mouse = mouse;
+        this.fonteTitulo = new Fonte(85,85, 85, 85);
+        this.fonteNormal = new Fonte(15,15,30,30);
 
         //Verifiqca Se imagem foi encontrada e não está corrompida
         fundo = new Imagem(CarregadorDeImagem.lerImagem("assets/fundo_menu.png"), new Retangulo(0, 0, 800, 600));
@@ -61,8 +66,13 @@ public class CenaMenu extends ICena {
     @Override
     public void desenha(Graphics2D g) {
         fundo.desenha(g);
-        titulo.desenha(g);
+        //titulo.desenha(g);
         botaoPlay.desenha(g);
         botaoExit.desenha(g);
+
+        fonteTitulo.escreva(g,70,100, "Cobrinha");
+        fonteNormal.escrevaCasoSensitivo(g,200,250, "Vamos brincar de pegar comida!");
+
     }
+
 }

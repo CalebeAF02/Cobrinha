@@ -29,7 +29,7 @@ public class WindowCobrinha extends Window {
 
     public WindowCobrinha(int largura, int altura, String tituloJanela) {
         super(largura, altura, tituloJanela);
-        this.setIconImage(CarregadorDeImagem.lerImagem("assets/icone_estrela.png"));
+        this.setIconImage(CarregadorDeImagem.lerImagem("assets/icone_cobrinha.png"));
         jogoAtual = new CenaJogo(teclado);
 
 

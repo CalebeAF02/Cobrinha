@@ -123,7 +123,7 @@ public class Cobrinha {
             if (i == 0) {
                 g2.setColor(Color.BLACK);
             } else {
-                g2.setColor(Color.MAGENTA);
+                g2.setColor(new Color(0, 180, 0));
             }
 
             g2.fill(new Rectangle2D.Double(parteDoCorpo.x + 2.0, parteDoCorpo.y + 2.0, subLargura, subAltura));
