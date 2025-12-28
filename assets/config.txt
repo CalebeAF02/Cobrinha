@@ -1,0 +1,9 @@
+6
+PARTIDA :: JOGADOR :: PONTOS :: TEMPO
+0 :: XEQU :: 4 :: 13,75
+1 :: KUZA :: 1 :: 10,55
+2 :: LOGU :: 1 :: 9,36
+3 :: FAJO :: 0 :: 8,15
+4 :: GEWU :: 0 :: 8,14
+5 :: VOTO :: 9 :: 58,52
+6 :: ZUVU :: 36 :: 180,90

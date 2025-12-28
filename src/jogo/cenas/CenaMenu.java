@@ -1,6 +1,8 @@
 package jogo.cenas;
 
+import jogo.WindowCobrinha;
 import jogo.utils.Retangulo;
+import jogo.utils.TecladoControle;
 import motor.ICena;
 import motor.entradas.Mouse;
 import motor.entradas.Teclado;
@@ -39,20 +41,25 @@ public class CenaMenu extends ICena {
 
     @Override
     public void atualiza(double dt) {
+
+        if (teclado.isKeyPressedOnce(TecladoControle.ESCAPE)) {
+            WindowCobrinha.getWindow().close();
+        }
+
         if(botaoPlay.isEncima(mouse)){
             if(botaoPlay.isClicado(mouse)){
-                motor.Window.getWindow().mudarEstado(1);
+                WindowCobrinha.getWindow().mudarEstado(1);
             }
         }
         if(botaoExit.isEncima(mouse)){
             if(botaoExit.isClicado(mouse)){
-                Window.getWindow().close();
+                WindowCobrinha.getWindow().close();
             }
         }
     }
 
     @Override
-    public void desenha(Graphics g) {
+    public void desenha(Graphics2D g) {
         fundo.desenha(g);
         titulo.desenha(g);
         botaoPlay.desenha(g);

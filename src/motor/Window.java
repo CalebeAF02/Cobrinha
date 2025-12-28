@@ -1,8 +1,5 @@
 package motor;
 
-import jogo.cenas.CenaJogo;
-import jogo.cenas.CenaMenu;
-import jogo.utils.Constantes;
 import motor.entradas.Mouse;
 import motor.entradas.Teclado;
 import motor.utils.Tempo;
@@ -13,32 +10,21 @@ import java.awt.*;
 // Classe Janela esta herdando a janela Java e implementando a execução!
 public class Window extends JFrame implements Runnable {
 
-    //Cria um singolton para que exista somente um ajanela!
-    private static Window window = null;
-    //Este é o Singonton da variavel window!
-    public static Window getWindow(){
-        if(Window.window == null){
-            Window.window = new Window(Constantes.LARGURA_JANELA, Constantes.ALTURA_JANELA, Constantes.TITULO_JANELA);
-        }
-        return Window.window;
-    }
-
-
     //Controle de cenas!
     public int estadoCorrente;
-    public ICena ICenaCorrente;
+    public ICena iCenaCorrente;
     //Instacia o Teclado!
     public Teclado teclado = new Teclado();
     // Instancia o Mouse!
     public Mouse mouse = new Mouse();
 
     public boolean executando;
+
     // Construtor!
     public Window(int largura, int altura, String tituloJanela) {
         //Metodos herdados do JFrame para criarem a janela!
         setSize(largura, altura);
         setTitle(tituloJanela);
-
         //Metodos para impedir redimensionamento de janela!
         setResizable(false);
         //Metodo para deixar a janela visivel!
@@ -53,10 +39,8 @@ public class Window extends JFrame implements Runnable {
         addMouseListener(mouse);
         //Metodo para escutar o movimento do mause!
         addMouseMotionListener(mouse);
-
         executando = true;
         mudarEstado(0);
-
     }
 
     public void close(){
@@ -65,19 +49,6 @@ public class Window extends JFrame implements Runnable {
 
     public void mudarEstado(int newEstado) {
         estadoCorrente = newEstado;
-        switch (estadoCorrente) {
-            case 0:
-                ICenaCorrente = new CenaMenu(teclado, mouse);
-                break;
-            case 1:
-                ICenaCorrente = new CenaJogo(teclado);
-                break;
-            default:
-                System.out.println("Cena nao encontrada!");
-                ICenaCorrente = null;
-                break;
-        }
-
     }
 
     public void atualiza(double dt) {
@@ -89,8 +60,7 @@ public class Window extends JFrame implements Runnable {
         this.desenha(dbg);
         //Desenha a tela na janela!
         getGraphics().drawImage(dbImage, 0, 0, this);
-
-        ICenaCorrente.atualiza(dt);
+        iCenaCorrente.atualiza(dt);
     }
 
     public void desenha(Graphics g) {
@@ -100,15 +70,13 @@ public class Window extends JFrame implements Runnable {
         //g2.setColor(Color.BLACK);
         // Desenha um retangulo Preto!
         //g2.fillRect(0, 0, getWidth(), getWidth());
-
-        ICenaCorrente.desenha(g);
+        iCenaCorrente.desenha(g2);
     }
 
     // Sobrescreve o metodo run da interface Runnable!
     @Override
     public void run() {
         double lastframeTime = 0.0;
-
         //Verifica se não foi lançado nenhum erro!
         try {
             while (executando) {
@@ -125,8 +93,6 @@ public class Window extends JFrame implements Runnable {
             // Se der erro vai imprimir na tela!
             erro.printStackTrace();
         }
-
         this.dispose();
-
     }
 }

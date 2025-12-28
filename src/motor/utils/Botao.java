@@ -40,6 +40,5 @@ public class Botao {
 
     public void desenha(Graphics g){
         g.drawImage(corrente, (int)retangulo.x, (int)retangulo.y, (int)retangulo.largura, (int)retangulo.altura, null);
-
     }
 }

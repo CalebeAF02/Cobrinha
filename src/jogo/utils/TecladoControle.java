@@ -7,4 +7,6 @@ public class TecladoControle {
     public static final int SETA_DECER = KeyEvent.VK_DOWN;
     public static final int SETA_ESQUERDA = KeyEvent.VK_LEFT;
     public static final int SETA_DIREITA = KeyEvent.VK_RIGHT;
+
+    public static final int ESCAPE = KeyEvent.VK_ESCAPE;
 }
