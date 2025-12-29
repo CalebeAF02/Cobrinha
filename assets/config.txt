@@ -1,4 +1,4 @@
-11
+13
 PARTIDA :: JOGADOR :: PONTOS :: TEMPO
 0 :: XEQU :: 4 :: 13,75
 1 :: KUZA :: 1 :: 10,55
@@ -12,3 +12,5 @@ PARTIDA :: JOGADOR :: PONTOS :: TEMPO
 9 :: KODU :: 15 :: -80,68
 10 :: VIFE :: 9 :: 49,87
 11 :: GUHA :: 11 :: 61,78
+12 :: BEFU :: 34 :: 130,62
+13 :: WONO :: 38 :: 185,22

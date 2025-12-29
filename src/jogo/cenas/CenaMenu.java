@@ -24,7 +24,7 @@ public class CenaMenu extends ICena {
     //Cria varias variaveis de imagens
     private Imagem titulo;
     private Imagem fundo;
-
+    private Imagem cobrinha;
     private Fonte fonteTitulo;
     private Fonte fonteNormal;
 
@@ -35,8 +35,8 @@ public class CenaMenu extends ICena {
         this.fonteNormal = new Fonte(15,15,30,30);
 
         //Verifiqca Se imagem foi encontrada e não está corrompida
-        fundo = new Imagem(CarregadorDeImagem.lerImagem("assets/fundo_menu.png"), new Retangulo(0, 0, 800, 600));
-
+        fundo = new Imagem(CarregadorDeImagem.lerImagem("assets/pl_chao_brita_calcada.png"), new Retangulo(0, 0, 800, 600));
+        cobrinha = new Imagem(CarregadorDeImagem.lerImagem("assets/icone_cobrinha.png"), new Retangulo(350, 300, 100, 100));
         BufferedImage sprites = CarregadorDeImagem.lerImagem("assets/menuSprite.png");
         //Recorta pedaços da imagem dentro de sprites!
         titulo = new Imagem(sprites.getSubimage(0, 242, 960, 240),new Retangulo(100, 100, 600, 250));
@@ -69,17 +69,18 @@ public class CenaMenu extends ICena {
     @Override
     public void desenha(Graphics2D g) {
         fundo.desenha(g);
+        cobrinha.desenha(g);
         //titulo.desenha(g);
 
-        ColorirImagem.recolorir(botaoPlay.getNormal(), Color.yellow);
-        ColorirImagem.recolorir(botaoExit.getNormal(), Color.BLUE);
+        //ColorirImagem.recolorir(botaoPlay.getNormal(), Color.yellow);
+        //ColorirImagem.recolorir(botaoExit.getNormal(), Color.BLUE);
 
         botaoPlay.desenha(g);
         botaoExit.desenha(g);
-        ColorirImagem.recolorir(fonteTitulo, Color.white);
+        ColorirImagem.recolorir(fonteTitulo, Color.GREEN);
         fonteTitulo.escreva(g,70,100, "Cobrinha");
 
-        ColorirImagem.recolorir(fonteNormal, Color.RED);
+        ColorirImagem.recolorir(fonteNormal, Color.WHITE);
         fonteNormal.escrevaCasoSensitivo(g,200,250, "Vamos brincar de pegar comida!");
 
     }

@@ -7,6 +7,7 @@ import jogo.utils.*;
 import motor.ICena;
 import motor.entradas.Teclado;
 import motor.utils.CarregadorDeImagem;
+import motor.utils.Imagem;
 import motor.utils.Tempo;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class CenaJogo extends ICena {
     private Teclado teclado;
     private Retangulo borda, campo;
 
+    private Imagem imgFundo;
     private BufferedImage imgComida;
 
     private Cobrinha cobrinha;
@@ -40,6 +42,8 @@ public class CenaJogo extends ICena {
 
     public CenaJogo(Teclado teclado) {
         this.teclado = teclado;
+
+        imgFundo = new Imagem(CarregadorDeImagem.lerImagem("assets/pl_chao.png"), new Retangulo(Constantes.QUADRADINHO*2,Constantes.QUADRADINHO*4,Constantes.QUADRADINHO*29,Constantes.QUADRADINHO*19));
 
         borda = new Retangulo(0, 0, Constantes.LARGURA_JANELA, Constantes.ALTURA_JANELA);
         campo = new Retangulo(Constantes.QUADRADINHO*2,Constantes.QUADRADINHO*4,Constantes.QUADRADINHO*29,Constantes.QUADRADINHO*19);
@@ -84,20 +88,17 @@ public class CenaJogo extends ICena {
                     maxComida += 2;
                 }
             }
-
-
             comida.atualiza(dt);
             cobrinha.atualiza(dt);
         }
-
-
-
     }
 
     @Override
     public void desenha(Graphics2D g) {
         borda.pintar(g,Color.BLACK);
-        campo.pintar(g, Color.WHITE);
+        imgFundo.desenha(g);
+
+        //campo.pintar(g, Color.WHITE);
 
         cobrinha.desenha(g);
         comida.desenha(g);
