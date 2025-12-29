@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Imagem {
-    public BufferedImage imagem;
+    private BufferedImage imagem;
     private Retangulo retangulo;
 
     public Imagem(BufferedImage imagem, Retangulo retangulo) {
@@ -16,5 +16,9 @@ public class Imagem {
 
     public void desenha(Graphics g) {
         g.drawImage(imagem, (int)retangulo.x, (int)retangulo.y, (int)retangulo.largura, (int)retangulo.altura, null);
+    }
+
+    public BufferedImage getImagem() {
+        return imagem;
     }
 }

@@ -91,7 +91,7 @@ public class Fonte {
             BufferedImage letraAtual;
 
             String letra = String.valueOf(linha.charAt(i));
-            System.out.println(letra);
+            //System.out.println(letra);
 
             letraAtual = fonte.getSubimage(posX, posY, largura, altura);
 
@@ -103,4 +103,9 @@ public class Fonte {
             i++;
         }
     }
+
+    public ArrayList<Letra> getLetras() {
+        return letras;
+    }
+
 }

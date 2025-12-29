@@ -11,6 +11,10 @@ public class Letra {
         this.letra = letra;
     }
 
+    public void setImagem(BufferedImage imagem) {
+        this.imagem = imagem;
+    }
+
     public BufferedImage getImagem() {
         return imagem;
     }

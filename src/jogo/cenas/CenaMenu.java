@@ -9,6 +9,7 @@ import motor.entradas.Teclado;
 import motor.fonte.Fonte;
 import motor.utils.Botao;
 import motor.utils.CarregadorDeImagem;
+import motor.utils.ColorirImagem;
 import motor.utils.Imagem;
 
 import java.awt.*;
@@ -40,7 +41,9 @@ public class CenaMenu extends ICena {
         //Recorta pedaços da imagem dentro de sprites!
         titulo = new Imagem(sprites.getSubimage(0, 242, 960, 240),new Retangulo(100, 100, 600, 250));
 
+        //botaoPlay = new Botao(sprites.getSubimage(265, 121, 261, 121), sprites.getSubimage(0, 121, 261, 121), new Retangulo(200, 400, 100, 100));
         botaoPlay = new Botao(sprites.getSubimage(265, 121, 261, 121), sprites.getSubimage(0, 121, 261, 121), new Retangulo(200, 400, 100, 100));
+
         botaoExit = new Botao(sprites.getSubimage(265, 0, 253, 93), sprites.getSubimage(0, 0, 253, 93), new Retangulo(500, 400, 100, 80));
     }
 
@@ -67,10 +70,16 @@ public class CenaMenu extends ICena {
     public void desenha(Graphics2D g) {
         fundo.desenha(g);
         //titulo.desenha(g);
+
+        ColorirImagem.recolorir(botaoPlay.getNormal(), Color.yellow);
+        ColorirImagem.recolorir(botaoExit.getNormal(), Color.BLUE);
+
         botaoPlay.desenha(g);
         botaoExit.desenha(g);
-
+        ColorirImagem.recolorir(fonteTitulo, Color.white);
         fonteTitulo.escreva(g,70,100, "Cobrinha");
+
+        ColorirImagem.recolorir(fonteNormal, Color.RED);
         fonteNormal.escrevaCasoSensitivo(g,200,250, "Vamos brincar de pegar comida!");
 
     }
