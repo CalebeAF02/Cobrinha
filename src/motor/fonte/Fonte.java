@@ -1,5 +1,7 @@
 package motor.fonte;
 
+import jogo.utils.Retangulo;
+import motor.entradas.Mouse;
 import motor.utils.CarregadorDeImagem;
 
 import java.awt.*;
@@ -7,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Fonte {
+
+    private Retangulo area;
 
     private BufferedImage fonte;
     private ArrayList<Letra> letras;
@@ -38,6 +42,8 @@ public class Fonte {
 
     public void escreva(Graphics2D g, int posX, int posY, String texto){
 
+        this.area = new Retangulo((int)posX, (int)posY, (int)(tamanhoPequenoX * texto.length()), (int)tamanhoPequenoY);
+
         int linhaX = posX;
 
         int i = 0;
@@ -56,6 +62,8 @@ public class Fonte {
     }
 
     public void escrevaCasoSensitivo(Graphics2D g, int posX, int posY, String texto){
+
+        this.area = new Retangulo((int)posX, (int)posY, (int)(tamanhoPequenoX * texto.length()), (int)tamanhoPequenoY);
 
         int linhaX = posX;
 
@@ -104,8 +112,26 @@ public class Fonte {
         }
     }
 
+    public boolean isEncima(Mouse mouse) {
+        if (area.isDentro((int) mouse.getX(), (int) mouse.getY())) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isClicado(Mouse mouse) {
+        if (area.isDentro((int) mouse.getX(), (int) mouse.getY())) {
+            if (mouse.isPressed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Letra> getLetras() {
         return letras;
     }
+
+
 
 }

@@ -13,38 +13,35 @@ import motor.utils.ColorirImagem;
 import motor.utils.Imagem;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class CenaMenu extends ICena {
 
     private Mouse mouse;
     private Teclado teclado;
-    private Botao botaoPlay, botaoExit;
+    private Botao botaoJogar, botaoSair;
 
-    //Cria varias variaveis de imagens
-    private Imagem titulo;
-    private Imagem fundo;
+    private Fonte fonteTitulo, fonteNormal;
+    private Fonte fonteBotaoJogar, fonteBotaoSair;
+
+    private Imagem imgPlanoDeFundo;
     private Imagem cobrinha;
-    private Fonte fonteTitulo;
-    private Fonte fonteNormal;
 
     public CenaMenu(Teclado teclado, Mouse mouse) {
         this.teclado = teclado;
         this.mouse = mouse;
-        this.fonteTitulo = new Fonte(85,85, 85, 85);
+        this.fonteTitulo = new Fonte(70,70, 70, 70);
         this.fonteNormal = new Fonte(15,15,30,30);
+        this.fonteBotaoJogar = new Fonte(35,35,45,45);
+        this.fonteBotaoSair = new Fonte(35,35,45,45);
 
         //Verifiqca Se imagem foi encontrada e não está corrompida
-        fundo = new Imagem(CarregadorDeImagem.lerImagem("assets/pl_chao_brita_calcada.png"), new Retangulo(0, 0, 800, 600));
-        cobrinha = new Imagem(CarregadorDeImagem.lerImagem("assets/icone_cobrinha.png"), new Retangulo(350, 300, 100, 100));
-        BufferedImage sprites = CarregadorDeImagem.lerImagem("assets/menuSprite.png");
-        //Recorta pedaços da imagem dentro de sprites!
-        titulo = new Imagem(sprites.getSubimage(0, 242, 960, 240),new Retangulo(100, 100, 600, 250));
+        imgPlanoDeFundo = new Imagem(CarregadorDeImagem.lerImagem("assets/pl_chao_brita_calcada.png"), new Retangulo(0, 0, 800, 600));
+        cobrinha = new Imagem(CarregadorDeImagem.lerImagem("assets/icone_cobrinha.png"), new Retangulo(360, 330, 100, 100));
 
-        //botaoPlay = new Botao(sprites.getSubimage(265, 121, 261, 121), sprites.getSubimage(0, 121, 261, 121), new Retangulo(200, 400, 100, 100));
-        botaoPlay = new Botao(sprites.getSubimage(265, 121, 261, 121), sprites.getSubimage(0, 121, 261, 121), new Retangulo(200, 400, 100, 100));
-
-        botaoExit = new Botao(sprites.getSubimage(265, 0, 253, 93), sprites.getSubimage(0, 0, 253, 93), new Retangulo(500, 400, 100, 80));
+        ColorirImagem.recolorir(fonteNormal, Color.WHITE);
+        ColorirImagem.recolorir(fonteTitulo, Color.GREEN);
+        ColorirImagem.recolorir(fonteNormal, Color.WHITE);
+        ColorirImagem.recolorir(fonteNormal, Color.WHITE);
     }
 
     @Override
@@ -54,35 +51,37 @@ public class CenaMenu extends ICena {
             WindowCobrinha.getWindow().close();
         }
 
-        if(botaoPlay.isEncima(mouse)){
-            if(botaoPlay.isClicado(mouse)){
+        if(fonteBotaoJogar.isEncima(mouse)){
+            ColorirImagem.recolorir(fonteBotaoJogar, Color.GREEN);
+            if(fonteBotaoJogar.isClicado(mouse)){
                 WindowCobrinha.getWindow().mudarEstado(1);
             }
+        }else{
+            ColorirImagem.recolorir(fonteBotaoJogar, Color.WHITE);
         }
-        if(botaoExit.isEncima(mouse)){
-            if(botaoExit.isClicado(mouse)){
+        if(fonteBotaoSair.isEncima(mouse)){
+            ColorirImagem.recolorir(fonteBotaoSair, Color.RED);
+            if(fonteBotaoSair.isClicado(mouse)){
                 WindowCobrinha.getWindow().close();
             }
+        }else{
+            ColorirImagem.recolorir(fonteBotaoSair, Color.WHITE);
         }
     }
 
     @Override
     public void desenha(Graphics2D g) {
-        fundo.desenha(g);
+        imgPlanoDeFundo.desenha(g);
+
+        fonteTitulo.escreva(g,110,130, "Cobrinha");
+
+        fonteNormal.escrevaCasoSensitivo(g,170,270, "Vamos brincar de pegar comida!");
+
         cobrinha.desenha(g);
-        //titulo.desenha(g);
 
-        //ColorirImagem.recolorir(botaoPlay.getNormal(), Color.yellow);
-        //ColorirImagem.recolorir(botaoExit.getNormal(), Color.BLUE);
+        fonteBotaoJogar.escreva(g,130,430, "Jogar");
 
-        botaoPlay.desenha(g);
-        botaoExit.desenha(g);
-        ColorirImagem.recolorir(fonteTitulo, Color.GREEN);
-        fonteTitulo.escreva(g,70,100, "Cobrinha");
-
-        ColorirImagem.recolorir(fonteNormal, Color.WHITE);
-        fonteNormal.escrevaCasoSensitivo(g,200,250, "Vamos brincar de pegar comida!");
-
+        fonteBotaoSair.escreva(g,500,430, "Sair");
     }
 
 }
