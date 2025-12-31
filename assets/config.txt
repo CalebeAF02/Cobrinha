@@ -1,4 +1,4 @@
-15
+16
 PARTIDA :: JOGADOR :: PONTOS :: TEMPO
 0 :: XEQU :: 4 :: 13,75
 1 :: KUZA :: 1 :: 10,55
@@ -16,3 +16,4 @@ PARTIDA :: JOGADOR :: PONTOS :: TEMPO
 13 :: WONO :: 38 :: 185,22
 14 :: JEYO :: 11 :: 47,93
 15 :: FEBU :: 1 :: 11,52
+16 :: YEQA :: 0 :: 8,19

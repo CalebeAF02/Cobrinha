@@ -4,10 +4,14 @@ Projeto de **estudo em Java**, inspirado no [vídeo do YouTube](https://www.yout
 
 Este projeto recria o clássico jogo da **Cobrinha (Snake Game)**, adicionando melhorias e adaptações próprias para tornar a experiência mais completa e divertida.
 
-![Tela de boas-vindas com opções de acesso](/prints/cena_menu.png)
-![Tela de boas-vindas com opções de acesso](/prints/cena_jogo_inicio.png)
-![Tela de boas-vindas com opções de acesso](/prints/cena_jogo_fim.png)
-![Tela de boas-vindas com opções de acesso](/prints/cena_pause.png)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu_jogar.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu_sair.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_jogo.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu_pause.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu_pause_voltar_ao_jogo.jpeg)
+![Tela de boas-vindas com opções de acesso](/prints/v2/cena_menu_pause_sair.jpeg)
+
 
 
 ---
